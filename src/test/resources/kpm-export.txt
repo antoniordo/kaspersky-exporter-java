@@ -1,0 +1,80 @@
+Websites
+
+Website name: Some App
+Website URL: someapp.com
+Login name: 
+Login: someone
+Password: Cq6WRMCbX89suncN
+Comment: The account for Some App
+
+---
+
+Website name: Big Tech Account
+Website URL: https://account.bigtech.com
+Login name: 
+Login: main.user@bigtech.com
+Password: SuTnwVxtWU5WqC4Q
+Comment: 
+
+---
+
+Website name: Big Tech Recover Account
+Website URL: https://account.bigtech.com
+Login name: 
+Login: recoveraccount@bigtech.com
+Password: AS5JYj,d9gw.mkcdz!H_Y3WQ
+Comment: A multiline text:
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua
+
+---
+
+Applications
+
+Application: Bank App
+Login name: 
+Login: josesilva
+Password: 12321
+Comment: 
+
+---
+
+Application: Social Security
+Login name: 
+Login: 12345678
+Password: 654321X
+Comment: 
+
+---
+
+Other Accounts
+
+Account name:My GPG Key
+Login name: 
+Login: 91DD4A34F2D46D7A
+Password: a–+E]Ki!m.::3xU
+Comment: uid:
+
+Luke Skywalker <luke.sky@starwars.com>
+
+---
+
+Notes
+
+Name: My Secret Note
+Text: My house vaults
+- Bedroom: 847165
+- Living room: 94623
+
+---
+
+Name: Wifi Passwords
+Text: 
+
+Home = j6lM4–mF]–#bR#8
+School = $5xljLP+M\W1ZsC
+
+Note: Is already saved on my cellhone
+
+---
+
