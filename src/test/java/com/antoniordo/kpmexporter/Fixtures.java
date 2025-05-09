@@ -1,4 +1,4 @@
-package com.antoniordo.passwordmanager;
+package com.antoniordo.kpmexporter;
 
 import java.nio.file.Paths;
 import java.util.List;

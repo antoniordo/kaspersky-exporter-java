@@ -1,4 +1,4 @@
-package com.antoniordo.passwordmanager;
+package com.antoniordo.kpmexporter;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -8,8 +8,6 @@ import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
-import com.antoniordo.kpmexporter.NordPassCvsExporter;
 
 public class NordPassCvsExporterTest {
 

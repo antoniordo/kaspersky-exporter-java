@@ -1,4 +1,4 @@
-package com.antoniordo.passwordmanager;
+package com.antoniordo.kpmexporter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.antoniordo.kpmexporter.KpmTextDataReader;
 import com.antoniordo.kpmexporter.data.KpmData;
 
 public class KpmTextDataReaderTest {
