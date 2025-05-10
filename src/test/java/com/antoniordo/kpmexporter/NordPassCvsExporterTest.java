@@ -16,11 +16,14 @@ public class NordPassCvsExporterTest {
         
         var expected = NordPassCvsExporter.CSV_HEADER + "\n";
         expected += """
-        "Some App","someapp.com","someone","Cq6WRMCbX89suncN","The account for Some App",,,,,,,,,,,,,,
+        "Some web site","somewebsite.com","someone","Cq6WRMCbX89suncN","The account for Some App",,,,,,,,,,,,,,
         "Big Tech Account","https://account.bigtech.com","main.user@bigtech.com","SuTnwVxtWU5WqC4Q","",,,,,,,,,,,,,,
-        "Big Tech Recover Account","https://account.bigtech.com","recoveraccount@bigtech.com","AS5JYj,d9gw.mkcdz!H_Y3WQ","A multiline text:
+        "Recover Account","https://account.bigtech.com","recoveraccount@bigtech.com","AS5JYj,d9gw.mkcdz!H_Y3WQ","A multiline text:
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
         incididunt ut labore et dolore magna aliqua",,,,,,,,,,,,,,
+        "Bank App",,"josesilva","12321","Main bank application",,,,,,,,,,,,,,
+        "Social Security",,"12345678","654321X","Another multiline comment
+        Lorem ipsum dolor sit amet",,,,,,,,,,,,,,
         """;
 
         NordPassCvsExporter.exportToCvs(Fixtures.KPM_RECORDS, tempDir.resolve("exported.csv").toString());

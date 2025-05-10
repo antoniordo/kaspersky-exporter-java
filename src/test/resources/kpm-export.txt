@@ -1,7 +1,7 @@
 Websites
 
-Website name: Some App
-Website URL: someapp.com
+Website name: Some web site
+Website URL: somewebsite.com
 Login name: 
 Login: someone
 Password: Cq6WRMCbX89suncN
@@ -18,7 +18,7 @@ Comment:
 
 ---
 
-Website name: Big Tech Recover Account
+Website name: Recover Account
 Website URL: https://account.bigtech.com
 Login name: 
 Login: recoveraccount@bigtech.com
@@ -35,7 +35,7 @@ Application: Bank App
 Login name: 
 Login: josesilva
 Password: 12321
-Comment: 
+Comment: Main bank application
 
 ---
 
@@ -43,7 +43,8 @@ Application: Social Security
 Login name: 
 Login: 12345678
 Password: 654321X
-Comment: 
+Comment: Another multiline comment
+Lorem ipsum dolor sit amet
 
 ---
 

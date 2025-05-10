@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringJoiner;
 
+import com.antoniordo.kpmexporter.data.KpmApplication;
 import com.antoniordo.kpmexporter.data.KpmData;
 import com.antoniordo.kpmexporter.data.KpmWebSite;
 
@@ -21,6 +23,7 @@ public class KpmTextDataReader {
     private static final String LOGIN_FIELD = "Login";
     private static final String PASSWORD_FIELD = "Password";
     private static final String COMMENT_FIELD = "Comment";
+    private static final String APPLICATION_FIELD = "Application";
 
     private static final String END_OF_RECORD_MARKER = "---";
 
@@ -39,7 +42,10 @@ public class KpmTextDataReader {
         }
         var webSitesLines = allLines.subList(allLines.indexOf(WEBSITES_SECTION_KEYWORD) +1,
                                              allLines.indexOf(APPLICATIONS_SECTION_KEYWORD));
+        var applicationsLines = allLines.subList(allLines.indexOf(APPLICATIONS_SECTION_KEYWORD) + 1,
+                                                 allLines.indexOf("Other Accounts"));
         result.addAll(processWebSitesLines(webSitesLines));
+        result.addAll(processApplications(applicationsLines));
         return result;
     }
 
@@ -68,6 +74,32 @@ public class KpmTextDataReader {
             }
         }
         return webSites;
+    }
+
+    private static Collection<KpmData> processApplications(List<String> applicationsLines) {
+        List<KpmData> applications = new ArrayList<>();
+        var recordBuilder = KpmApplication.newBuilder();
+        var iterator = applicationsLines.iterator();
+        while (iterator.hasNext()) {
+            var line = iterator.next();
+            if (line.isBlank()) {
+                continue;
+            }
+            var splited = line.split(":", 2);
+            String key = splited[0];
+            String value = String.valueOf(splited[1]).strip();
+            switch (key) {
+                case APPLICATION_FIELD -> recordBuilder.application(value);
+                case LOGIN_FIELD -> recordBuilder.login(value);
+                case PASSWORD_FIELD -> recordBuilder.password(value);
+                case COMMENT_FIELD -> {
+                    recordBuilder.comment(flattenLinesUtilEndOfRecordMarker(iterator, value));
+                    applications.add(recordBuilder.build());
+                    recordBuilder = KpmApplication.newBuilder();
+                }
+            }
+        }
+        return applications;
     }
 
     private static String flattenLinesUtilEndOfRecordMarker(Iterator<String> iterator, String startText) {
