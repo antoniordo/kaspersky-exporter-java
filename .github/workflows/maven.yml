@@ -7,9 +7,19 @@ on:
     branches: [ "main" ]
 
 jobs:
+
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: asdf-vm/actions/install@v4
-      - run: ./mvnw -B test
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install asdf
+      uses: asdf-vm/actions/install@v3
+
+    - name: Setup Java
+      run: asdf install
+
+    - name: Build with Maven
+      run: ./mvnw -B test
