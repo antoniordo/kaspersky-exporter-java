@@ -6,6 +6,7 @@ import java.util.StringJoiner;
 
 import com.antoniordo.kpmexporter.data.KpmApplication;
 import com.antoniordo.kpmexporter.data.KpmData;
+import com.antoniordo.kpmexporter.data.KpmOtherAccount;
 import com.antoniordo.kpmexporter.data.KpmWebSite;
 
 import java.io.BufferedWriter;
@@ -61,6 +62,10 @@ public class NordPassCvsExporter {
                                                            USERNAME_HEADER, ka.login(),
                                                            PASSWORD_HEADER, ka.password(),
                                                            NOTE_HEADER, ka.comment()));
+            case KpmOtherAccount oa -> formatCvsLine(Map.of(NAME_HREADER, oa.accountName(),
+                                                           USERNAME_HEADER, oa.login(),
+                                                           PASSWORD_HEADER, oa.password(),
+                                                           NOTE_HEADER, oa.comment()));
             default -> throw new IllegalArgumentException("Unsupported KpmData type: " + record.getClass().getName());
         };
     }

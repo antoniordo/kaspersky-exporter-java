@@ -11,12 +11,14 @@ import java.util.StringJoiner;
 
 import com.antoniordo.kpmexporter.data.KpmApplication;
 import com.antoniordo.kpmexporter.data.KpmData;
+import com.antoniordo.kpmexporter.data.KpmOtherAccount;
 import com.antoniordo.kpmexporter.data.KpmWebSite;
 
 public class KpmTextDataReader {
 
     private static final String WEBSITES_SECTION_KEYWORD = "Websites";
     private static final String APPLICATIONS_SECTION_KEYWORD = "Applications";
+    private static final String OTHER_ACCOUNTS_SECTION_KEYWORD = "Other Accounts";
 
     private static final String WEBSITE_NAME_FIELD = "Website name";
     private static final String WEBSITE_FIELD_URL_FIELD = "Website URL";
@@ -24,6 +26,7 @@ public class KpmTextDataReader {
     private static final String PASSWORD_FIELD = "Password";
     private static final String COMMENT_FIELD = "Comment";
     private static final String APPLICATION_FIELD = "Application";
+    private static final String ACCOUNT_NAME_FIELD = "Account name";
 
     private static final String END_OF_RECORD_MARKER = "---";
 
@@ -43,13 +46,16 @@ public class KpmTextDataReader {
         var webSitesLines = allLines.subList(allLines.indexOf(WEBSITES_SECTION_KEYWORD) +1,
                                              allLines.indexOf(APPLICATIONS_SECTION_KEYWORD));
         var applicationsLines = allLines.subList(allLines.indexOf(APPLICATIONS_SECTION_KEYWORD) + 1,
-                                                 allLines.indexOf("Other Accounts"));
+                                                 allLines.indexOf(OTHER_ACCOUNTS_SECTION_KEYWORD));
+        var otherAccountsLines = allLines.subList(allLines.indexOf(OTHER_ACCOUNTS_SECTION_KEYWORD) + 1,
+                                                  allLines.indexOf("Notes"));
         result.addAll(processWebSitesLines(webSitesLines));
         result.addAll(processApplications(applicationsLines));
+        result.addAll(processOtherAccounts(otherAccountsLines));
         return result;
     }
 
-    private static List<KpmData> processWebSitesLines(List<String> webSitesLines) {
+    private static Collection<KpmData> processWebSitesLines(List<String> webSitesLines) {
         List<KpmData> webSites = new ArrayList<>();
         KpmWebSite.KpmRecordBuilder recordBuilder = KpmWebSite.newBuilder();
         var iterator = webSitesLines.iterator();
@@ -100,6 +106,33 @@ public class KpmTextDataReader {
             }
         }
         return applications;
+    }
+
+    private static Collection<KpmData> processOtherAccounts(List<String> otherAccountsLines) {
+        List<KpmData> others = new ArrayList<>();
+        var recordBuilder = KpmOtherAccount.newBuilder();
+        var iterator = otherAccountsLines.iterator();
+        while (iterator.hasNext()) {
+            var line = iterator.next();
+            if (line.isBlank()) {
+                continue;
+            }
+            var splited = line.split(":", 2);
+            String key = splited[0];
+            String value = String.valueOf(splited[1]).strip();
+            switch (key) {
+                case ACCOUNT_NAME_FIELD -> recordBuilder.accountName(value);
+                case LOGIN_FIELD -> recordBuilder.login(value);
+                case PASSWORD_FIELD -> recordBuilder.password(value);
+                case COMMENT_FIELD -> {
+                    recordBuilder.comment(flattenLinesUtilEndOfRecordMarker(iterator, value));
+                    others.add(recordBuilder.build());
+                    recordBuilder = KpmOtherAccount.newBuilder();
+                }
+            }
+        }
+
+        return others;
     }
 
     private static String flattenLinesUtilEndOfRecordMarker(Iterator<String> iterator, String startText) {

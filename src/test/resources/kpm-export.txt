@@ -50,12 +50,11 @@ Lorem ipsum dolor sit amet
 
 Other Accounts
 
-Account name:My GPG Key
+Account name: My Other Account
 Login name: 
 Login: 91DD4A34F2D46D7A
-Password: a–+E]Ki!m.::3xU
+Password: a-+E]Ki!m.::3xU
 Comment: uid:
-
 Luke Skywalker <luke.sky@starwars.com>
 
 ---

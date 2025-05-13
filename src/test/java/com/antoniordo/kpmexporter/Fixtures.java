@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.antoniordo.kpmexporter.data.KpmApplication;
 import com.antoniordo.kpmexporter.data.KpmData;
+import com.antoniordo.kpmexporter.data.KpmOtherAccount;
 import com.antoniordo.kpmexporter.data.KpmWebSite;
 
 public class Fixtures {
@@ -42,7 +43,14 @@ public class Fixtures {
                 """
                 Another multiline comment
                 Lorem ipsum dolor sit amet\
-                """)
+                """),
+        new KpmOtherAccount("My Other Account",
+                            "91DD4A34F2D46D7A",
+                            "a-+E]Ki!m.::3xU",
+                            """
+                            uid:
+                            Luke Skywalker <luke.sky@starwars.com>\
+                            """)
     );
 
 }
