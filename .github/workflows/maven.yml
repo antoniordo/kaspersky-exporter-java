@@ -21,5 +21,8 @@ jobs:
     - name: Setup Java
       run: asdf install
 
+    - name: Show Java version
+      run: java -version
+
     - name: Build with Maven
       run: ./mvnw -B test
