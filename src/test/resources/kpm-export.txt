@@ -69,12 +69,8 @@ Text: My house vaults
 ---
 
 Name: Wifi Passwords
-Text: 
-
-Home = j6lM4–mF]–#bR#8
+Text: Home = j6lM4-mF]-#bR#8
 School = $5xljLP+M\W1ZsC
-
-Note: Is already saved on my cellhone
 
 ---
 

@@ -26,6 +26,11 @@ public class NordPassCvsExporterTest {
         Lorem ipsum dolor sit amet",,,,,,,,,,,,,,
         "My Other Account",,"91DD4A34F2D46D7A","a-+E]Ki!m.::3xU","uid:
         Luke Skywalker <luke.sky@starwars.com>",,,,,,,,,,,,,,
+        "My Secret Note",,,,"My house vaults
+        - Bedroom: 847165
+        - Living room: 94623",,,,,,,,,,,,,,
+        "Wifi Passwords",,,,"Home = j6lM4-mF]-#bR#8
+        School = $5xljLP+M\\W1ZsC",,,,,,,,,,,,,,
         """;
 
         NordPassCvsExporter.exportToCvs(Fixtures.KPM_RECORDS, tempDir.resolve("exported.csv").toString());

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.antoniordo.kpmexporter.data.KpmApplication;
 import com.antoniordo.kpmexporter.data.KpmData;
+import com.antoniordo.kpmexporter.data.KpmNote;
 import com.antoniordo.kpmexporter.data.KpmOtherAccount;
 import com.antoniordo.kpmexporter.data.KpmWebSite;
 
@@ -50,7 +51,18 @@ public class Fixtures {
                             """
                             uid:
                             Luke Skywalker <luke.sky@starwars.com>\
-                            """)
+                            """),
+        new KpmNote("My Secret Note",
+                        """
+                        My house vaults
+                        - Bedroom: 847165
+                        - Living room: 94623\
+                        """),
+        new KpmNote("Wifi Passwords",
+                        """
+                        Home = j6lM4-mF]-#bR#8
+                        School = $5xljLP+M\\W1ZsC\
+                        """)
     );
 
 }
