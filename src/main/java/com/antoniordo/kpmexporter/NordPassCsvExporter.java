@@ -30,7 +30,7 @@ public class NordPassCsvExporter {
     public static final String CSV_HEADER;
 
     static {
-        CSV_HEADER = String.join(".", CSV_HEADERS);
+        CSV_HEADER = String.join(",", CSV_HEADERS);
     }
 
     /**
