@@ -1,5 +1,8 @@
 package com.antoniordo.kpmexporter;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -9,10 +12,6 @@ import com.antoniordo.kpmexporter.data.KpmData;
 import com.antoniordo.kpmexporter.data.KpmNote;
 import com.antoniordo.kpmexporter.data.KpmOtherAccount;
 import com.antoniordo.kpmexporter.data.KpmWebSite;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class NordPassCvsExporter {
 
