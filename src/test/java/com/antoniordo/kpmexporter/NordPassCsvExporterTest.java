@@ -9,12 +9,12 @@ import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-public class NordPassCvsExporterTest {
+public class NordPassCsvExporterTest {
 
     @Test
-    void exportToCvs(@TempDir Path tempDir) {
+    void exportToCsv(@TempDir Path tempDir) {
         
-        var expected = NordPassCvsExporter.CSV_HEADER + "\n";
+        var expected = NordPassCsvExporter.CSV_HEADER + "\n";
         expected += """
         "Some web site","somewebsite.com","someone","Cq6WRMCbX89suncN","The account for Some App",,,,,,,,,,,,,,
         "Big Tech Account","https://account.bigtech.com","main.user@bigtech.com","SuTnwVxtWU5WqC4Q","",,,,,,,,,,,,,,
@@ -33,7 +33,7 @@ public class NordPassCvsExporterTest {
         School = $5xljLP+M\\W1ZsC",,,,,,,,,,,,,,
         """;
 
-        NordPassCvsExporter.exportToCvs(Fixtures.KPM_RECORDS, tempDir.resolve("exported.csv").toString());
+        NordPassCsvExporter.exportToCsv(Fixtures.KPM_RECORDS, tempDir.resolve("exported.csv").toString());
         String actual = readStringFromFile(tempDir.resolve("exported.csv"));
 
         assertThat(actual).isEqualTo(expected);

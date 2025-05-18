@@ -13,7 +13,7 @@ import com.antoniordo.kpmexporter.data.KpmNote;
 import com.antoniordo.kpmexporter.data.KpmOtherAccount;
 import com.antoniordo.kpmexporter.data.KpmWebSite;
 
-public class NordPassCvsExporter {
+public class NordPassCsvExporter {
 
     private static final String NAME_HREADER = "name";
     private static final String URL_HEADER = "url";
@@ -38,7 +38,7 @@ public class NordPassCvsExporter {
      * @param kpmData the collection of KpmData to export
      * @param cvsFilePath the path to the CSV file to write the file will be created if it does not exist
      */
-    public static void exportToCvs(Collection<KpmData> kpmData, String cvsFilePath) {
+    public static void exportToCsv(Collection<KpmData> kpmData, String cvsFilePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(cvsFilePath))) {
             writer.write(CSV_HEADER);
             writer.newLine();
@@ -53,26 +53,26 @@ public class NordPassCvsExporter {
 
     private static String kpmRecordToCsvLine(KpmData record) {
         return switch (record) {
-            case KpmWebSite kw -> formatCvsLine(Map.of(NAME_HREADER, kw.websiteName(),
+            case KpmWebSite kw -> formatCsvLine(Map.of(NAME_HREADER, kw.websiteName(),
                                                        URL_HEADER, kw.websiteURL(),
                                                        USERNAME_HEADER, kw.login(),
                                                        PASSWORD_HEADER, kw.password(),
                                                        NOTE_HEADER, kw.comment()));
-            case KpmApplication ka -> formatCvsLine(Map.of(NAME_HREADER, ka.application(),
+            case KpmApplication ka -> formatCsvLine(Map.of(NAME_HREADER, ka.application(),
                                                            USERNAME_HEADER, ka.login(),
                                                            PASSWORD_HEADER, ka.password(),
                                                            NOTE_HEADER, ka.comment()));
-            case KpmOtherAccount oa -> formatCvsLine(Map.of(NAME_HREADER, oa.accountName(),
+            case KpmOtherAccount oa -> formatCsvLine(Map.of(NAME_HREADER, oa.accountName(),
                                                            USERNAME_HEADER, oa.login(),
                                                            PASSWORD_HEADER, oa.password(),
                                                            NOTE_HEADER, oa.comment()));
-            case KpmNote kn -> formatCvsLine(Map.of(NAME_HREADER, kn.name(),
+            case KpmNote kn -> formatCsvLine(Map.of(NAME_HREADER, kn.name(),
                                                     NOTE_HEADER, kn.text()));
             default -> throw new IllegalArgumentException("Unsupported KpmData type: " + record.getClass().getName());
         };
     }
 
-    private static String formatCvsLine(Map<String, String> data) {
+    private static String formatCsvLine(Map<String, String> data) {
         var joiner = new StringJoiner(",");
         for (int i = 0; i < CSV_HEADERS.length; i++) {
             if (data.containsKey(CSV_HEADERS[i])) {
