@@ -17,7 +17,6 @@ import com.antoniordo.kpmexporter.data.KpmWebSite;
 
 public class KpmTextDataReader {
 
-    private static final String WEBSITES_SECTION_KEYWORD = "Websites";
     private static final String APPLICATIONS_SECTION_KEYWORD = "Applications";
     private static final String OTHER_ACCOUNTS_SECTION_KEYWORD = "Other Accounts";
     private static final String NOTES_SECTION_KEYWORD = "Notes";
@@ -41,7 +40,7 @@ public class KpmTextDataReader {
      */
     public static List<KpmData> readFromFile(String filePath) {
         List<String> allLines = readAllLines(filePath);
-        var webSitesLines = allLines.subList(allLines.indexOf(WEBSITES_SECTION_KEYWORD) +1,
+        var webSitesLines = allLines.subList(1,
                                              allLines.indexOf(APPLICATIONS_SECTION_KEYWORD));
         var applicationsLines = allLines.subList(allLines.indexOf(APPLICATIONS_SECTION_KEYWORD) + 1,
                                                  allLines.indexOf(OTHER_ACCOUNTS_SECTION_KEYWORD));
